@@ -8,7 +8,7 @@ import { useState } from "react";
 import "./SearchForm.css";
 
 export default function SearchForm() {
-  const [userInputs, setuserInputs] = useState("");
+  const [userInputs, setuserInputs] = useState<string>("");
 
   const usedispatch = useDispatch();
   function getValue(event: React.ChangeEvent<HTMLInputElement>) {
