@@ -10,7 +10,7 @@ export default function CountryDetails() {
   const name = useParams();
   const Apiurl = "https://restcountries.com/v3.1/name/" + name.name;
 
-  const getdata = useSelector(
+  const getData = useSelector(
     (state: RootState) => state.countrydetails.countryItem
   );
   const usedispatch = useDispatch<AppDispatch>();
@@ -20,10 +20,13 @@ export default function CountryDetails() {
 
   //console.log(url, "para");
   //console.log(name);
-  //console.log(getdata, "hi");
+  console.log(getData, "hi");
   return (
     <div>
-      <h1>{getdata[0]?.name.common}</h1>
+      <img src={getData[0].flags.png}></img>
+      <p>{getData[0].name.common}</p>
+      <h1>{getData[0].population}</h1>
+      <p></p>
     </div>
   );
 }

@@ -57,30 +57,28 @@ export default function CountryList() {
   const getuserData = useSelector(
     (state: RootState) => state.userItem.userInput
   );
-  //console.log(getdata, "data");
+
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchcountryData());
   }, [dispatch]);
 
-  const [fiteredproducts, setfilteredproducts] = useState<CountryType[]>([]);
+  const [fiteredProducts, setfilteredProducts] = useState<CountryType[]>([]);
   let result;
 
   if (!getuserData) {
     result = getData;
   } else {
-    result = fiteredproducts;
+    result = fiteredProducts;
   }
 
-  const favDispatch = useDispatch();
-  //favDispatch(favactions.favaddItem());
   useEffect(() => {
     const fiteredproduct = getData.filter((productItem) =>
       productItem.name.common
         .toLocaleLowerCase()
         .includes(getuserData.toLocaleLowerCase())
     );
-    setfilteredproducts(fiteredproduct);
+    setfilteredProducts(fiteredproduct);
   }, [getuserData, getData]);
 
   return (
@@ -89,19 +87,6 @@ export default function CountryList() {
       <div>
         <SearchForm></SearchForm>
       </div>
-      {/*<TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Flag</TableCell>
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Region</TableCell>
-              <TableCell align="right">Population</TableCell>
-              <TableCell align="right">languages</TableCell>
-              <TableCell align="right">s</TableCell>
-            </TableRow>
-  </TableHead>*/}
-      (
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 800 }}
@@ -114,46 +99,21 @@ export default function CountryList() {
               <StyledTableCell align="right">Name</StyledTableCell>
               <StyledTableCell align="right">Region</StyledTableCell>
               <StyledTableCell align="right">Population</StyledTableCell>
+
               <StyledTableCell align="right">Languages</StyledTableCell>
-              <StyledTableCell align="right">F</StyledTableCell>
-              <StyledTableCell align="right">D</StyledTableCell>
+
+              <StyledTableCell align="right"></StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {result.map((countryItems) => (
+            {result.slice(1, 30).map((countryItems) => (
               <CountryItem
                 key={crypto.randomUUID()}
                 countryData={countryItems}
               />
             ))}
-
-            {/*key={crypto.randomUUID()}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                {/*  <TableCell component="th" scope="row">
-                  {<img src={product.flags.png} />}
-                </TableCell>
-                <TableCell align="right">{product.name.common}</TableCell>
-                <TableCell align="right">{product.region}</TableCell>
-                <TableCell align="right">{product.population}</TableCell>
-                <TableCell align="left">
-                  <ul>
-                    {product.languages ? (
-                      Object.entries(product.languages).map(([key]) => (
-                        <li key={key}>{product.languages[key]}</li>
-                      ))
-                    ) : (
-                      <li>No Languages</li>
-                    )}
-                  </ul>
-                </TableCell>
-
-                <TableCell align="right">
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                    </TableCell>*/}
           </TableBody>
         </Table>
       </TableContainer>
