@@ -1,17 +1,21 @@
+//react
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import { fetchcountryData } from "../../thunk/country";
 import { useDispatch } from "react-redux/es/exports";
+//component
+import { fetchcountryData } from "../../thunk/country";
+
 import CountryItem from "./CountryItem";
 import { AppDispatch, RootState } from "../../store/store";
-import { CountryType, MyLanguages } from "../../types/type";
+import { CountryType } from "../../types/type";
 import SearchForm from "../Search/SearchForm";
 import Loader from "../Loader/Loader";
 import "./CountryList.css";
+import { countryAction } from "../../redux/slice/CountrySlice";
 
-import { useEffect } from "react";
-import { useState } from "react";
-
+//mui
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
@@ -20,7 +24,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
-import { countryAction } from "../../redux/slice/CountrySlice";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

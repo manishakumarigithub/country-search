@@ -1,21 +1,22 @@
+//react
 import React from "react";
-import TextField from "@mui/material/TextField";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { userAction } from "../../redux/slice/userSlice";
-import { RootState } from "../../store/store";
 import { useState } from "react";
+//mui
+import TextField from "@mui/material/TextField";
+//component
+import { userAction } from "../../redux/slice/userSlice";
 import "./SearchForm.css";
 
 export default function SearchForm() {
   const [userInputs, setuserInputs] = useState<string>("");
 
-  const usedispatch = useDispatch();
+  const getDispatch = useDispatch();
   function getValue(event: React.ChangeEvent<HTMLInputElement>) {
     const result = event.target.value;
     setuserInputs(result);
-    //console.log(result, "ggg");
-    usedispatch(userAction.getUserInput(userInputs));
+
+    getDispatch(userAction.getUserInput(userInputs));
   }
 
   return (
@@ -27,12 +28,6 @@ export default function SearchForm() {
         onChange={getValue}
         value={userInputs}
       />
-      {/*<form>
-        <label>
-          search item by name
-          <input type="text" onChange={getValue}></input>
-        </label>
-</form>*/}
     </div>
   );
 }

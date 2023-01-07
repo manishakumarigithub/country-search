@@ -1,12 +1,12 @@
 import React from "react";
+//component
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import FavIist from "./FavIist";
-import { CountryType, MyLanguages } from "../../types/type";
 
+//mui
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -22,26 +22,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
-
-function createData(
-  Flag: string,
-  Name: string,
-  Region: string,
-  Population: number,
-  languages: MyLanguages
-) {
-  return { Flag, Name, Region, Population, languages };
-}
 
 export default function FavoriteItem() {
   const favItems = useSelector((state: RootState) => state.favItem.countries);

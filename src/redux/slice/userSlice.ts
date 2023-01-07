@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 type initialState = {
   userInput: string;
@@ -12,7 +12,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     getUserInput: (state, action) => {
-      // console.log(action.payload, "action");
       state.userInput = action.payload;
     },
   },

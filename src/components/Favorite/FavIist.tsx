@@ -1,13 +1,11 @@
 import React from "react";
-import { CountryType } from "../../types/type";
+//mui
 import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { Fragment } from "react";
-import Alert from "@mui/material/Alert";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
-
-import Snackbar from "@mui/material/Snackbar";
+//component
+import { CountryType } from "../../types/type";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

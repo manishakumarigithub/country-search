@@ -1,7 +1,8 @@
 import React from "react";
+//component
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import Home from "../../pages/Home";
+
 export default function Footer() {
   return (
     <div>

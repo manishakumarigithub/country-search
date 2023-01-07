@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { CountryType } from "../../types/type";
-import { MyLanguages } from "../../types/type";
+
 type initialState = {
   countryItem: CountryType[];
 };
@@ -12,7 +12,6 @@ const countryDetailsSlice = createSlice({
   initialState,
   reducers: {
     getProdutData: (state, action) => {
-      // console.log(action.payload, "action");
       state.countryItem = action.payload;
     },
   },

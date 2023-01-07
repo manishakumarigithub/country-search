@@ -10,8 +10,6 @@ const favSlice = createSlice({
   initialState,
   reducers: {
     favaddItem: (state, action: PayloadAction<CountryType>) => {
-      //console.log(action.payload, "action.payload");
-
       state.countries.push(action.payload);
     },
   },

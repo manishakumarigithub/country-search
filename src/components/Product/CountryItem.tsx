@@ -1,23 +1,23 @@
-import { type } from "@testing-library/user-event/dist/type";
-import React, { useEffect } from "react";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import { CountryType } from "../../types/type";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState } from "react";
-import favactions from "../../redux/slice/FavoriteCartSlice";
+//react
+import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
 import { Link } from "react-router-dom";
-import Typography from "@mui/material/Typography";
+import { Fragment } from "react";
+//mui
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import IconButton from "@mui/material/IconButton";
 import { pink } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { Fragment } from "react";
 import Alert from "@mui/material/Alert";
-import "../Product/CountryItem.css";
-
 import Snackbar from "@mui/material/Snackbar";
+//component
+import favactions from "../../redux/slice/FavoriteCartSlice";
+import { CountryType } from "../../types/type";
+import { RootState } from "../../store/store";
+import "../Product/CountryItem.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -45,8 +45,6 @@ type Props = {
 
 export default function CountryItem({ countryData }: Props) {
   const [open, setOpen] = React.useState(false);
-  const [openOne, setOpenOne] = React.useState(false);
-  const [isValid, setisValid] = useState(false);
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -58,11 +56,8 @@ export default function CountryItem({ countryData }: Props) {
 
     setOpen(false);
   };
-  const handleClick = () => {
-    setOpen(true);
-  };
+
   const getData = useSelector((state: RootState) => state.favItem);
-  // const favDispatch = useDispatch();
 
   let isFavorite = getData.countries.some(
     (item) => item.name.common === countryData.name.common
@@ -76,28 +71,11 @@ export default function CountryItem({ countryData }: Props) {
         countryData.name.common.toLocaleLowerCase()
     );
     if (isFavoriteItemDuplicate) {
-      setisValid(false);
       setOpen(true);
       return;
     } else {
-      setisValid(true);
       favDispatch(favactions.favaddItem(countryData));
     }
-  }
-
-  {
-    /*
-     const favdispatch = useDispatch();
-  function getValue() {
-    if (!isFavoriteItemDuplicate) {
-      setOpen(true);
-      favdispatch(favactions.favaddItem(countryData));
-
-      //handleClick();
-    } else {
-      setOpenOne(true);
-    }
-  */
   }
 
   return (
@@ -139,19 +117,11 @@ export default function CountryItem({ countryData }: Props) {
           <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
             <Alert
               onClose={handleClose}
-              severity="success"
+              severity="warning"
               sx={{ width: "100%" }}
             >
               Item is already added
             </Alert>
-          </Snackbar>
-
-          <Snackbar open={openOne} autoHideDuration={100} onClose={handleClose}>
-            <Alert
-              onClose={handleClose}
-              severity="warning"
-              sx={{ width: "100%" }}
-            ></Alert>
           </Snackbar>
         </StyledTableCell>
         <StyledTableCell>

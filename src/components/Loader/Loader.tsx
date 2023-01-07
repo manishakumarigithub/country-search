@@ -1,9 +1,10 @@
 import React from "react";
-import "../Loader/Loader.css";
+
+//mui
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-
-import ClipLoader from "react-spinners/ClipLoader";
+//component
+import "../Loader/Loader.css";
 
 export default function Loder() {
   return (
