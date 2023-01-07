@@ -20,11 +20,12 @@ The front end project is to practice React with TypeScript and Redux. Completing
 9. Deploy the project
 
 ## Styling Requirements (4 points)
-`font-family: 'Nunito', sans-serif`
-2. Display data in table
-1. Font: 
-3. Navbar and Footer
-4. When the user add an country to `Favorite` page, you should show a message, for example: `A country just added to the favorite page`
+
+`font-family: 'Nunito', sans-serif` 2. Display data in table
+
+1. Font:
+2. Navbar and Footer
+3. When the user add an country to `Favorite` page, you should show a message, for example: `A country just added to the favorite page`
 
 ## Code style Requirements (6 points)
 
@@ -56,3 +57,5 @@ ONLY DO THIS PART WHEN YOU HAVE COMPLETED THE REQUIREMENTS PART
 ![Country list](https://raw.githubusercontent.com/Andreaa-Dev/Country-list/master/src/images/allCountries.png)
 
 ![Country detail](https://raw.githubusercontent.com/Andreaa-Dev/Country-list/master/src/images/eachCountry.png)
+
+Deployed link:https://isa-6-front-end-project.vercel.app/

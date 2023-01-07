@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="footer">
         <Link to="">
           {" "}
-          <button className="back">back to home</button>{" "}
+          <button className="back">home</button>{" "}
         </Link>
 
         <Link to="/favorite">
