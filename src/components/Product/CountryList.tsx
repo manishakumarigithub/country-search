@@ -1,24 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { fetchcountryData } from "../../thunk/country";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux/es/exports";
 import CountryItem from "./CountryItem";
 import { AppDispatch, RootState } from "../../store/store";
 import { CountryType, MyLanguages } from "../../types/type";
-import { useState } from "react";
-import { countryAction } from "../../redux/slice/CountrySlice";
 import SearchForm from "../Search/SearchForm";
+import Loader from "../Loader/Loader";
+import "./CountryList.css";
+
+import { useEffect } from "react";
+import { useState } from "react";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
+import { countryAction } from "../../redux/slice/CountrySlice";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,38 +32,19 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
-
-function createData(
-  Flag: string,
-  Name: string,
-  Region: string,
-  Population: number,
-  languages: MyLanguages
-) {
-  return { Flag, Name, Region, Population, languages };
-}
-
-//let favoriteArray[]:CountryType;
-
 export default function CountryList() {
   const getData = useSelector((state: RootState) => state.countryItem.country);
+
+  const isLoad = useSelector((state: RootState) => state.countryItem.isLoading);
   const getuserData = useSelector(
     (state: RootState) => state.userItem.userInput
   );
 
-  const dispatch = useDispatch<AppDispatch>();
+  const disPatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(fetchcountryData());
-  }, [dispatch]);
+    disPatch(fetchcountryData());
+    disPatch(countryAction.getProductDataPending());
+  }, [disPatch]);
 
   const [fiteredProducts, setfilteredProducts] = useState<CountryType[]>([]);
   let result;
@@ -73,17 +56,18 @@ export default function CountryList() {
   }
 
   useEffect(() => {
-    const fiteredproduct = getData.filter((productItem) =>
+    const fiteredProduct = getData.filter((productItem) =>
       productItem.name.common
         .toLocaleLowerCase()
         .includes(getuserData.toLocaleLowerCase())
     );
-    setfilteredProducts(fiteredproduct);
+    setfilteredProducts(fiteredProduct);
   }, [getuserData, getData]);
 
   return (
     <div>
       CountryList
+      {isLoad ? <Loader></Loader> : ""}
       <div>
         <SearchForm></SearchForm>
       </div>
@@ -95,7 +79,7 @@ export default function CountryList() {
         >
           <TableHead>
             <TableRow>
-              <StyledTableCell>Flag</StyledTableCell>
+              <StyledTableCell className="flag">Flag</StyledTableCell>
               <StyledTableCell align="right">Name</StyledTableCell>
               <StyledTableCell align="right">Region</StyledTableCell>
               <StyledTableCell align="right">Population</StyledTableCell>
@@ -107,8 +91,8 @@ export default function CountryList() {
             </TableRow>
           </TableHead>
 
-          <TableBody>
-            {result.slice(1, 30).map((countryItems) => (
+          <TableBody className="table-body">
+            {result.map((countryItems) => (
               <CountryItem
                 key={crypto.randomUUID()}
                 countryData={countryItems}

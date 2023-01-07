@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import { CountryType } from "../../types/type";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
+import { useState } from "react";
 import favactions from "../../redux/slice/FavoriteCartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
@@ -15,7 +15,7 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { Fragment } from "react";
 import Alert from "@mui/material/Alert";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import "../Product/CountryItem.css";
 
 import Snackbar from "@mui/material/Snackbar";
 
@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  
+
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -45,6 +45,8 @@ type Props = {
 
 export default function CountryItem({ countryData }: Props) {
   const [open, setOpen] = React.useState(false);
+  const [openOne, setOpenOne] = React.useState(false);
+  const [isValid, setisValid] = useState(false);
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -56,27 +58,52 @@ export default function CountryItem({ countryData }: Props) {
 
     setOpen(false);
   };
-
   const handleClick = () => {
     setOpen(true);
   };
+  const getData = useSelector((state: RootState) => state.favItem);
+  // const favDispatch = useDispatch();
 
-  const getdata = useSelector((state: RootState) => state.favItem);
-
-  const favdispatch = useDispatch();
-  function getValue() {
-    favdispatch(favactions.favaddItem(countryData));
-    handleClick();
-  }
-
-  let isFavorite = getdata.countries.some(
+  let isFavorite = getData.countries.some(
     (item) => item.name.common === countryData.name.common
   );
+
+  const favDispatch = useDispatch();
+  function getValue() {
+    const isFavoriteItemDuplicate = getData.countries.some(
+      (item) =>
+        item.name.common.toLocaleLowerCase() ===
+        countryData.name.common.toLocaleLowerCase()
+    );
+    if (isFavoriteItemDuplicate) {
+      setisValid(false);
+      setOpen(true);
+      return;
+    } else {
+      setisValid(true);
+      favDispatch(favactions.favaddItem(countryData));
+    }
+  }
+
+  {
+    /*
+     const favdispatch = useDispatch();
+  function getValue() {
+    if (!isFavoriteItemDuplicate) {
+      setOpen(true);
+      favdispatch(favactions.favaddItem(countryData));
+
+      //handleClick();
+    } else {
+      setOpenOne(true);
+    }
+  */
+  }
 
   return (
     <Fragment>
       <StyledTableRow key={crypto.randomUUID()} className="CountryTable">
-        <StyledTableCell component="th" scope="row">
+        <StyledTableCell component="th" scope="row" className="flag">
           <img
             src={countryData.flags.png}
             alt={countryData.name.common}
@@ -93,7 +120,7 @@ export default function CountryItem({ countryData }: Props) {
         <StyledTableCell align="right">
           {countryData.languages ? (
             Object.entries(countryData.languages).map(([key]) => (
-              <li key={key}>{countryData.languages[key]}</li>
+              <li key={crypto.randomUUID()}>{countryData.languages[key]}</li>
             ))
           ) : (
             <li>No Languages</li>
@@ -101,22 +128,31 @@ export default function CountryItem({ countryData }: Props) {
         </StyledTableCell>
 
         <StyledTableCell>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <IconButton
+            aria-label="add to favorites"
+            onClick={getValue}
+            sx={{ color: isFavorite ? pink[500] : "bluegray" }}
+          >
+            <FavoriteIcon />
+          </IconButton>
+
+          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
             <Alert
               onClose={handleClose}
               severity="success"
               sx={{ width: "100%" }}
             >
-              A country just added to the favorite page
+              Item is already added
             </Alert>
           </Snackbar>
-          <IconButton
-            aria-label="add to favorites"
-            onClick={getValue}
-            sx={{ color: isFavorite ? pink[500] : "primary" }}
-          >
-            <FavoriteIcon />
-          </IconButton>
+
+          <Snackbar open={openOne} autoHideDuration={100} onClose={handleClose}>
+            <Alert
+              onClose={handleClose}
+              severity="warning"
+              sx={{ width: "100%" }}
+            ></Alert>
+          </Snackbar>
         </StyledTableCell>
         <StyledTableCell>
           {" "}

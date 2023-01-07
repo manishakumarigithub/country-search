@@ -1,11 +1,13 @@
 body {
-  margin: 0;
+  margin: 100px;
   font-family: "Nunito", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(228, 234, 234);
+  margin-top: 1%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Nunito", sans-serif;
 }

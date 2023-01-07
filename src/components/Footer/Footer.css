@@ -1,0 +1,16 @@
+.footer {
+  left: 0;
+  bottom: 0;
+  position: relative;
+  width: 100%;
+  background-color: rgb(60, 60, 185);
+  height: 50px;
+  text-align: center;
+}
+.next {
+  margin-right: 5px;
+  background-color: green;
+}
+.back {
+  background-color: green;
+}

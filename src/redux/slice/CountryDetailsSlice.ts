@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CountryType } from "../../types/type";
+import { MyLanguages } from "../../types/type";
 type initialState = {
   countryItem: CountryType[];
 };

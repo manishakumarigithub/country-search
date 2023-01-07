@@ -1,10 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { CountryType } from "../../types/type";
+
 type initialState = {
   country: CountryType[];
+  isLoading: boolean;
 };
 const initialState: initialState = {
+  isLoading: false,
   country: [],
 };
 
@@ -13,8 +16,12 @@ const countrySlice = createSlice({
   initialState,
   reducers: {
     getProdutData: (state, action) => {
-      // console.log(action.payload, "action");
       state.country = action.payload;
+
+      state.isLoading = false;
+    },
+    getProductDataPending: (state) => {
+      state.isLoading = true;
     },
   },
 });

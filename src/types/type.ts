@@ -4,6 +4,7 @@ export type CountryType = {
   flags: { png: string; svg: string };
   name: { common: string };
   languages: MyLanguages;
+  capital: string[];
 };
 export type MyLanguages = {
   [key: string]: string;

@@ -25,6 +25,7 @@ export default function SearchForm() {
         label="please enter country name"
         variant="standard"
         onChange={getValue}
+        value={userInputs}
       />
       {/*<form>
         <label>

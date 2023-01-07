@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
 import CountryDetails from "./pages/CountryDetails";
+import Footer from "./components/Footer/Footer";
 function App() {
   const fevData = useSelector((state: RootState) => state.favItem.countries);
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
         <Route path="/countries/:name" element={<CountryDetails />}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
