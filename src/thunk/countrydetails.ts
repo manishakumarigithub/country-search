@@ -1,6 +1,6 @@
 import { AppDispatch } from "../store/store";
 import { countryDetailsAction } from "../redux/slice/CountryDetailsSlice";
-
+//url wor
 export function fetchcountryDetails(url: string) {
   return async (dispatch: AppDispatch) => {
     dispatch(countryDetailsAction.getProdutDataPending());

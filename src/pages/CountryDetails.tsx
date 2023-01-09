@@ -26,19 +26,20 @@ import "../components/Loader/Loader";
 import Loder from "../components/Loader/Loader";
 
 export default function CountryDetails() {
-  const { name } = useParams();
+  const { name } = useParams(); //it gives us object
   // console.log(name, "name");
 
   const Apiurl = "https://restcountries.com/v3.1/name/" + name;
-
+  //store of Details
   const getData = useSelector(
     (state: RootState) => state.countryDetails.countryItem
   );
+  //loading
   const isLoad = useSelector(
     (state: RootState) => state.countryDetails.isLoading
   );
   const dispatchData = useDispatch<AppDispatch>();
-
+  //function for data
   useEffect(() => {
     dispatchData(fetchcountryDetails(Apiurl));
     dispatchData(countryDetailsAction.getProdutDataPending());

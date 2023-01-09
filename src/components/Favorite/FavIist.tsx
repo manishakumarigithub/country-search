@@ -7,6 +7,7 @@ import { Fragment } from "react";
 //component
 import { CountryType } from "../../types/type";
 
+//mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,

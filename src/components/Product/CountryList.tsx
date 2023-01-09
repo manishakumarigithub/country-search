@@ -25,6 +25,7 @@ import Paper from "@mui/material/Paper";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
 
+//mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -36,19 +37,21 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 export default function CountryList() {
+  //countrylist store
   const getData = useSelector((state: RootState) => state.countryItem.country);
-
+  //country loading function
   const isLoad = useSelector((state: RootState) => state.countryItem.isLoading);
+  //userinput store
   const getuserData = useSelector(
     (state: RootState) => state.userItem.userInput
   );
-
+  //country list fetching function
   const disPatch = useDispatch<AppDispatch>();
   useEffect(() => {
     disPatch(fetchcountryData());
     disPatch(countryAction.getProductDataPending());
   }, [disPatch]);
-
+  //state for filtered data
   const [fiteredProducts, setfilteredProducts] = useState<CountryType[]>([]);
   let result;
 
@@ -60,16 +63,19 @@ export default function CountryList() {
     );
     setfilteredProducts(fiteredProduct);
   }, [getuserData, getData]);
-
-  if (getuserData === "") {
+  //display conditions
+  //result = getData;
+  if (!getuserData) {
     result = getData;
-    console.log(result);
-  } else if (getuserData !== "" && fiteredProducts.length > 0) {
-    result = fiteredProducts;
+    //console.log(result, "1");
   } else {
+    result = fiteredProducts;
+    //console.log(result, "2");
+  } /*  else {
     return <p> this item is not available</p>;
+    console.log(result, "3");
   }
-
+ */
   return (
     <div>
       CountryList

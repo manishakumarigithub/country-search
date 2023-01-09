@@ -13,6 +13,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
+
+//mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -24,6 +26,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 export default function FavoriteItem() {
+  //favStore
   const favItems = useSelector(
     (state: RootState) => state.favItem.favCountries
   );

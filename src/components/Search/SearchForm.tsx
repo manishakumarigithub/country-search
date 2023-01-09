@@ -11,19 +11,16 @@ import { userAction } from "../../redux/slice/UserSlice";
 import "./SearchForm.css";
 
 export default function SearchForm() {
+  //state for userinput
   const [userInputs, setuserInputs] = useState<string>("");
-  const getData = useSelector((state: RootState) => state.countryItem.country);
-  function refresh() {
-    return getData;
-  }
+  //function for onchange
+
   const getDispatch = useDispatch();
   function getValue(event: React.ChangeEvent<HTMLInputElement>) {
     const result = event.target.value;
     setuserInputs(result);
 
     getDispatch(userAction.getUserInput(userInputs));
-
-    refresh();
   }
 
   return (

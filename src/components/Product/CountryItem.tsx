@@ -1,6 +1,6 @@
 //react
 import React from "react";
-
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
@@ -19,6 +19,7 @@ import { CountryType } from "../../types/type";
 import { RootState } from "../../store/store";
 import "../Product/CountryItem.css";
 
+//mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -44,7 +45,8 @@ type Props = {
 };
 
 export default function CountryItem({ countryData }: Props) {
-  const [open, setOpen] = React.useState(false);
+  //snackbar function
+  const [open, setOpen] = useState(false);
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -56,19 +58,19 @@ export default function CountryItem({ countryData }: Props) {
 
     setOpen(false);
   };
+  
 
+
+  //favorite store
   const getData = useSelector((state: RootState) => state.favItem);
-
+  //favorite item is available function
   let isFavorite = getData.favCountries.some(
     (item) => item.name.common === countryData.name.common
   );
-
+  //favorite button function
   const favDispatch = useDispatch();
   function getValue() {
-    const isFavoriteItemDuplicate = getData.favCountries.some(
-      (item) => item.name.common === countryData.name.common
-    );
-    if (isFavoriteItemDuplicate) {
+     if (isFavorite) {
       setOpen(true);
       return;
     } else {
