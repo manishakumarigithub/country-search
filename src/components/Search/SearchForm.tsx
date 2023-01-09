@@ -2,6 +2,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 //mui
 import TextField from "@mui/material/TextField";
 //component
@@ -10,13 +12,18 @@ import "./SearchForm.css";
 
 export default function SearchForm() {
   const [userInputs, setuserInputs] = useState<string>("");
-
+  const getData = useSelector((state: RootState) => state.countryItem.country);
+  function refresh() {
+    return getData;
+  }
   const getDispatch = useDispatch();
   function getValue(event: React.ChangeEvent<HTMLInputElement>) {
     const result = event.target.value;
     setuserInputs(result);
 
     getDispatch(userAction.getUserInput(userInputs));
+
+    refresh();
   }
 
   return (
@@ -27,6 +34,7 @@ export default function SearchForm() {
         variant="standard"
         onChange={getValue}
         value={userInputs}
+        type="search"
       />
     </div>
   );

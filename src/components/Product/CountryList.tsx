@@ -52,12 +52,6 @@ export default function CountryList() {
   const [fiteredProducts, setfilteredProducts] = useState<CountryType[]>([]);
   let result;
 
-  if (!getuserData) {
-    result = getData;
-  } else {
-    result = fiteredProducts;
-  }
-
   useEffect(() => {
     const fiteredProduct = getData.filter((productItem) =>
       productItem.name.common
@@ -66,6 +60,15 @@ export default function CountryList() {
     );
     setfilteredProducts(fiteredProduct);
   }, [getuserData, getData]);
+
+  if (getuserData === "") {
+    result = getData;
+    //console.log(" 1");
+  } else if (getuserData !== "" && fiteredProducts.length > 0) {
+    result = fiteredProducts;
+  } else {
+    return <p> this item is not available</p>;
+  }
 
   return (
     <div>

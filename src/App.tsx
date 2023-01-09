@@ -17,7 +17,10 @@ function App() {
       <Routes>
         <Route path="" element={<Home></Home>}></Route>
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
-        <Route path="/countries/:name" element={<CountryDetails />}></Route>
+        <Route
+          path="/countriesDetails/:name"
+          element={<CountryDetails />}
+        ></Route>
       </Routes>
       <Footer></Footer>
     </div>

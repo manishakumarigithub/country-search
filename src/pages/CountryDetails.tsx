@@ -23,8 +23,10 @@ import { fetchcountryDetails } from "../thunk/countrydetails";
 import "./Country.css";
 
 export default function CountryDetails() {
-  const name = useParams();
-  const Apiurl = "https://restcountries.com/v3.1/name/" + name.name;
+  const { name } = useParams();
+  // console.log(name, "name");
+
+  const Apiurl = "https://restcountries.com/v3.1/name/" + name;
 
   const getData = useSelector(
     (state: RootState) => state.countryDetails.countryItem
@@ -33,6 +35,8 @@ export default function CountryDetails() {
   useEffect(() => {
     usedispatch(fetchcountryDetails(Apiurl));
   }, [usedispatch, Apiurl]);
+  //console.log(getData, "data");
+
   return (
     <div className="Details">
       <Card sx={{ maxWidth: 345 }}>

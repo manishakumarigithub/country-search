@@ -66,15 +66,14 @@ export default function CountryItem({ countryData }: Props) {
   const favDispatch = useDispatch();
   function getValue() {
     const isFavoriteItemDuplicate = getData.countries.some(
-      (item) =>
-        item.name.common.toLocaleLowerCase() ===
-        countryData.name.common.toLocaleLowerCase()
+      (item) => item.name.common === countryData.name.common
     );
     if (isFavoriteItemDuplicate) {
       setOpen(true);
       return;
     } else {
       favDispatch(favactions.favaddItem(countryData));
+      alert("item is just added");
     }
   }
 
@@ -126,7 +125,7 @@ export default function CountryItem({ countryData }: Props) {
         </StyledTableCell>
         <StyledTableCell>
           {" "}
-          <Link to={`/countries/${countryData.name.common}`}>
+          <Link to={`/countriesDetails/${countryData.name.common}`}>
             MoreDetails
           </Link>{" "}
         </StyledTableCell>
