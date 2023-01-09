@@ -10,7 +10,7 @@ import { RootState } from "./store/store";
 import CountryDetails from "./pages/CountryDetails";
 import Footer from "./components/Footer/Footer";
 function App() {
-  const fevData = useSelector((state: RootState) => state.favItem.countries);
+  const fevData = useSelector((state: RootState) => state.favItem.favCountries);
   return (
     <div className="App">
       <Navbar fevItem={fevData}></Navbar>

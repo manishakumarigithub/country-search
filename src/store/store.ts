@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import countryReducer from "../redux/slice/CountrySlice";
 import { favReducer } from "../redux/slice/FavoriteCartSlice";
-import userReducer from "../redux/slice/userSlice";
+import userReducer from "../redux/slice/UserSlice";
 import countrydetailsReducer from "../redux/slice/CountryDetailsSlice";
 const store = configureStore({
   reducer: {

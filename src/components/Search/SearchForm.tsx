@@ -7,7 +7,7 @@ import { RootState } from "../../store/store";
 //mui
 import TextField from "@mui/material/TextField";
 //component
-import { userAction } from "../../redux/slice/userSlice";
+import { userAction } from "../../redux/slice/UserSlice";
 import "./SearchForm.css";
 
 export default function SearchForm() {

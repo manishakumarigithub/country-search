@@ -59,13 +59,13 @@ export default function CountryItem({ countryData }: Props) {
 
   const getData = useSelector((state: RootState) => state.favItem);
 
-  let isFavorite = getData.countries.some(
+  let isFavorite = getData.favCountries.some(
     (item) => item.name.common === countryData.name.common
   );
 
   const favDispatch = useDispatch();
   function getValue() {
-    const isFavoriteItemDuplicate = getData.countries.some(
+    const isFavoriteItemDuplicate = getData.favCountries.some(
       (item) => item.name.common === countryData.name.common
     );
     if (isFavoriteItemDuplicate) {
@@ -73,7 +73,6 @@ export default function CountryItem({ countryData }: Props) {
       return;
     } else {
       favDispatch(favactions.favaddItem(countryData));
-      alert("item is just added");
     }
   }
 

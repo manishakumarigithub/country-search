@@ -19,8 +19,11 @@ import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 //component
 import { RootState } from "../store/store";
-import { fetchcountryDetails } from "../thunk/countrydetails";
+import { fetchcountryDetails } from "../thunk/Countrydetails";
 import "./Country.css";
+import { countryDetailsAction } from "../redux/slice/CountryDetailsSlice";
+import "../components/Loader/Loader";
+import Loder from "../components/Loader/Loader";
 
 export default function CountryDetails() {
   const { name } = useParams();
@@ -31,14 +34,20 @@ export default function CountryDetails() {
   const getData = useSelector(
     (state: RootState) => state.countryDetails.countryItem
   );
-  const usedispatch = useDispatch<AppDispatch>();
+  const isLoad = useSelector(
+    (state: RootState) => state.countryDetails.isLoading
+  );
+  const dispatchData = useDispatch<AppDispatch>();
+
   useEffect(() => {
-    usedispatch(fetchcountryDetails(Apiurl));
-  }, [usedispatch, Apiurl]);
+    dispatchData(fetchcountryDetails(Apiurl));
+    dispatchData(countryDetailsAction.getProdutDataPending());
+  }, [dispatchData, Apiurl]);
   //console.log(getData, "data");
 
   return (
     <div className="Details">
+      {isLoad ? <Loder></Loder> : ""}
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={

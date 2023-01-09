@@ -2,15 +2,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { CountryType } from "../../types/type";
 type initialState = {
-  countries: CountryType[];
+  favCountries: CountryType[];
 };
-const initialState: initialState = { countries: [] };
+const initialState: initialState = { favCountries: [] };
 const favSlice = createSlice({
   name: "favItem",
   initialState,
   reducers: {
     favaddItem: (state, action: PayloadAction<CountryType>) => {
-      state.countries.push(action.payload);
+      state.favCountries.push(action.payload);
     },
   },
 });

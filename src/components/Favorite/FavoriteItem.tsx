@@ -24,7 +24,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 export default function FavoriteItem() {
-  const favItems = useSelector((state: RootState) => state.favItem.countries);
+  const favItems = useSelector(
+    (state: RootState) => state.favItem.favCountries
+  );
 
   return (
     <div>

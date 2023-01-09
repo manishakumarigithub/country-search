@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux/es/exports";
 //component
-import { fetchcountryData } from "../../thunk/country";
+import { fetchcountryData } from "../../thunk/Country";
 
 import CountryItem from "./CountryItem";
 import { AppDispatch, RootState } from "../../store/store";
@@ -63,7 +63,7 @@ export default function CountryList() {
 
   if (getuserData === "") {
     result = getData;
-    //console.log(" 1");
+    console.log(result);
   } else if (getuserData !== "" && fiteredProducts.length > 0) {
     result = fiteredProducts;
   } else {
