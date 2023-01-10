@@ -26,10 +26,9 @@ import "../components/Loader/Loader";
 import Loder from "../components/Loader/Loader";
 
 export default function CountryDetails() {
-  const { name } = useParams(); //it gives us object
-  // console.log(name, "name");
+  const name = useParams(); //it gives us object
 
-  const Apiurl = "https://restcountries.com/v3.1/name/" + name;
+  const Apiurl = "https://restcountries.com/v3.1/name/" + name.name;
   //store of Details
   const getData = useSelector(
     (state: RootState) => state.countryDetails.countryItem

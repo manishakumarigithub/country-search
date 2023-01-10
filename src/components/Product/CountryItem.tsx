@@ -58,8 +58,6 @@ export default function CountryItem({ countryData }: Props) {
 
     setOpen(false);
   };
-  
-
 
   //favorite store
   const getData = useSelector((state: RootState) => state.favItem);
@@ -70,7 +68,7 @@ export default function CountryItem({ countryData }: Props) {
   //favorite button function
   const favDispatch = useDispatch();
   function getValue() {
-     if (isFavorite) {
+    if (isFavorite) {
       setOpen(true);
       return;
     } else {

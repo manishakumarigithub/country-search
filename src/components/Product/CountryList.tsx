@@ -65,17 +65,13 @@ export default function CountryList() {
   }, [getuserData, getData]);
   //display conditions
   //result = getData;
-  if (!getuserData) {
+  if (getuserData === "") {
     result = getData;
     //console.log(result, "1");
   } else {
     result = fiteredProducts;
-    //console.log(result, "2");
-  } /*  else {
-    return <p> this item is not available</p>;
-    console.log(result, "3");
   }
- */
+
   return (
     <div>
       CountryList

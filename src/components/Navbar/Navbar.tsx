@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HouseIcon from "@mui/icons-material/House";
+import { pink } from "@mui/material/colors";
 
 type props = {
   fevItem: CountryType[];
@@ -55,7 +56,11 @@ export default function Navbar({ fevItem }: props) {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Link style={style} to="/favorite">
               <Badge badgeContent={favItemlength} color="secondary">
-                <FavoriteIcon />{" "}
+                <IconButton
+                  sx={{ color: favItemlength ? pink[500] : "bluegray" }}
+                >
+                  <FavoriteIcon />
+                </IconButton>
               </Badge>
             </Link>
           </Box>
