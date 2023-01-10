@@ -58,4 +58,4 @@ ONLY DO THIS PART WHEN YOU HAVE COMPLETED THE REQUIREMENTS PART
 
 ![Country detail](https://raw.githubusercontent.com/Andreaa-Dev/Country-list/master/src/images/eachCountry.png)
 
-Deployed link:https://isa-6-front-end-project.vercel.app/
+Deployed link: https://isa-6-front-end-project-f79t.vercel.app/
