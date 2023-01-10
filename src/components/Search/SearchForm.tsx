@@ -2,8 +2,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+
 //mui
 import TextField from "@mui/material/TextField";
 //component
