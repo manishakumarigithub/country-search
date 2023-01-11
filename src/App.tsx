@@ -2,12 +2,12 @@ import React from "react";
 import "./App.css";
 
 import { Route, Routes } from "react-router";
-import Home from "./pages/Home";
-import Favorite from "./pages/Favorite";
+import Home from "./pages/Home/Home";
+import Favorite from "./pages/Favorite/Favorite";
 import Navbar from "./components/Navbar/Navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
-import CountryDetails from "./pages/CountryDetails";
+import CountryDetails from "./pages/CountryDetails/CountryDetails";
 import Footer from "./components/Footer/Footer";
 function App() {
   const fevData = useSelector((state: RootState) => state.favItem.favCountries);

@@ -74,7 +74,6 @@ export default function CountryList() {
 
   return (
     <div>
-      CountryList
       {isLoad ? <Loader></Loader> : ""}
       <div>
         <SearchForm></SearchForm>

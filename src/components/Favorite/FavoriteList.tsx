@@ -6,6 +6,8 @@ import TableRow from "@mui/material/TableRow";
 import { Fragment } from "react";
 //component
 import { CountryType } from "../../types/type";
+import { useDispatch } from "react-redux";
+import favactions from "../../redux/slice/FavoriteCartSlice";
 
 //mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -32,7 +34,12 @@ type Props = {
   favData: CountryType;
 };
 
-export default function FavIist({ favData }: Props) {
+export default function FavoriteList({ favData }: Props) {
+  const usedispatch = useDispatch();
+  const handleRemove = (name: string) => {
+    usedispatch(favactions.favRemoveItem(name));
+  };
+
   return (
     <Fragment>
       <StyledTableRow key={crypto.randomUUID()} className="CountryTable">
@@ -54,6 +61,11 @@ export default function FavIist({ favData }: Props) {
           ) : (
             <li>No Languages</li>
           )}
+        </StyledTableCell>
+        <StyledTableCell align="right">
+          <button onClick={() => handleRemove(favData.name.common)}>
+            Remove
+          </button>
         </StyledTableCell>
       </StyledTableRow>
     </Fragment>

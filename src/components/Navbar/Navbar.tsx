@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Badge from "@mui/material/Badge";
 import { CountryType } from "../../types/type";
+import "../Navbar/Navbar.css";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -38,18 +39,18 @@ export default function Navbar({ fevItem }: props) {
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             Country
           </Typography>
-          <Box sx={{ flexGrow: 20 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 40 }} />
+          <Box sx={{ display: { xs: "none", md: "flex", mt: 4 } }}>
             <Link style={style} to="">
               {" "}
-              <HouseIcon />
+              <HouseIcon className="homeIcon" />
             </Link>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
@@ -57,9 +58,11 @@ export default function Navbar({ fevItem }: props) {
             <Link style={style} to="/favorite">
               <Badge badgeContent={favItemlength} color="secondary">
                 <IconButton
-                  sx={{ color: favItemlength ? pink[500] : "bluegray" }}
+                  sx={{
+                    color: favItemlength ? pink[500] : "bluegray",
+                  }}
                 >
-                  <FavoriteIcon />
+                  <FavoriteIcon className="favIcon" />
                 </IconButton>
               </Badge>
             </Link>

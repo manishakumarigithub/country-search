@@ -3,14 +3,14 @@
   bottom: 0;
   position: relative;
   width: 100%;
-  background-color: rgb(60, 60, 185);
+  background-color: #1976d2;
   height: 50px;
   text-align: center;
 }
 .next {
   margin-right: 5px;
-  background-color: green;
+  background-color: white;
 }
 .back {
-  background-color: green;
+  background-color: white;
 }

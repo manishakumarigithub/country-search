@@ -2,7 +2,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store/store";
+import { AppDispatch } from "../../store/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -18,12 +18,12 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 //component
-import { RootState } from "../store/store";
-import { fetchcountryDetails } from "../thunk/Countrydetails";
+import { RootState } from "../../store/store";
+import { fetchcountryDetails } from "../../thunk/Countrydetails";
 import "./Country.css";
-import { countryDetailsAction } from "../redux/slice/CountryDetailsSlice";
-import "../components/Loader/Loader";
-import Loder from "../components/Loader/Loader";
+import { countryDetailsAction } from "../../redux/slice/CountryDetailsSlice";
+import "../../components/Loader/Loader";
+import Loder from "../../components/Loader/Loader";
 
 export default function CountryDetails() {
   const name = useParams(); //it gives us object

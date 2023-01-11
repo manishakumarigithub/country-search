@@ -2,7 +2,7 @@ import React from "react";
 //component
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import FavIist from "./FavIist";
+import FavoriteList from "../Favorite/FavoriteList";
 
 //mui
 import Table from "@mui/material/Table";
@@ -56,7 +56,7 @@ export default function FavoriteItem() {
 
           <TableBody>
             {favItems.map((items) => (
-              <FavIist key={crypto.randomUUID()} favData={items} />
+              <FavoriteList key={crypto.randomUUID()} favData={items} />
             ))}
           </TableBody>
         </Table>
