@@ -24,12 +24,16 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { Tooltip, IconButton } from "@mui/material";
 
 //mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
+    fontSize: 17,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -71,6 +75,32 @@ export default function CountryList() {
   } else {
     result = fiteredProducts;
   }
+  const countryListresult = [...result];
+  function countryDscending() {
+    const sorted = countryListresult.sort((a, b) => {
+      if (a.name.common < b.name.common) {
+        return -1;
+      }
+      if (a.name.common > b.name.common) {
+        return 1;
+      }
+      return 0;
+    });
+    disPatch(countryAction.getProdutData(sorted));
+  }
+
+  function countryAscending() {
+    const sorted = countryListresult.sort((a, b) => {
+      if (a.name.common > b.name.common) {
+        return -1;
+      }
+      if (a.name.common < b.name.common) {
+        return 1;
+      }
+      return 0;
+    });
+    disPatch(countryAction.getProdutData(sorted));
+  }
 
   return (
     <div>
@@ -87,7 +117,16 @@ export default function CountryList() {
           <TableHead>
             <TableRow>
               <StyledTableCell className="flag">Flag</StyledTableCell>
-              <StyledTableCell align="right">Name</StyledTableCell>
+              <StyledTableCell align="right">
+                Name{" "}
+                <IconButton onClick={countryDscending}>
+                  <ArrowDownwardIcon fontSize="small" />
+                </IconButton>
+                <IconButton onClick={countryAscending}>
+                  <ArrowUpwardIcon fontSize="small" />
+                </IconButton>
+              </StyledTableCell>
+              {/* <StyledTableCell align="right">Name</StyledTableCell> */}
               <StyledTableCell align="right">Region</StyledTableCell>
               <StyledTableCell align="right">Population</StyledTableCell>
 

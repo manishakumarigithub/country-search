@@ -22,6 +22,17 @@ export default function SearchForm() {
     getDispatch(userAction.getUserInput(userInputs));
   }
 
+  function searchHandler() {
+    setuserInputs("");
+    getDispatch(userAction.getUserInput(userInputs));
+  }
+
+  function keyPress(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.keyCode === 13) {
+      searchHandler();
+    }
+  }
+
   return (
     <div className="Search_Form">
       <TextField
@@ -30,7 +41,8 @@ export default function SearchForm() {
         variant="standard"
         onChange={getValue}
         value={userInputs}
-        type="search"
+        /* onKeyPress={keyPress} */
+        /*  type="search" */
       />
     </div>
   );

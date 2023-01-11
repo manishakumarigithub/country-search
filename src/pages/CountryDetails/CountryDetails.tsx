@@ -17,10 +17,11 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import MapIcon from "@mui/icons-material/Map";
 //component
 import { RootState } from "../../store/store";
 import { fetchcountryDetails } from "../../thunk/Countrydetails";
-import "./Country.css";
+import "./CountryDetails.css";
 import { countryDetailsAction } from "../../redux/slice/CountryDetailsSlice";
 import "../../components/Loader/Loader";
 import Loder from "../../components/Loader/Loader";
@@ -69,6 +70,7 @@ export default function CountryDetails() {
           image={getData[0].flags.png}
           alt="image"
         />
+
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             <li>

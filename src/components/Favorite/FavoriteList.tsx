@@ -39,6 +39,7 @@ export default function FavoriteList({ favData }: Props) {
   const handleRemove = (name: string) => {
     usedispatch(favactions.favRemoveItem(name));
   };
+  console.log(favData, "fav");
 
   return (
     <Fragment>
