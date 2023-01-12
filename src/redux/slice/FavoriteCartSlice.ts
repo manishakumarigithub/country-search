@@ -13,9 +13,10 @@ const favSlice = createSlice({
       state.favCountries.push(action.payload);
     },
     favRemoveItem: (state, action) => {
-      state.favCountries = state.favCountries.filter(
+      const result = state.favCountries.filter(
         (item) => item.name.common !== action.payload
       );
+      state.favCountries = result;
     },
   },
 });

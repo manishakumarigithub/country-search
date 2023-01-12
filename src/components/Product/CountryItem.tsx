@@ -47,6 +47,7 @@ type Props = {
 export default function CountryItem({ countryData }: Props) {
   //snackbar function
   const [open, setOpen] = useState(false);
+  const [isValid, setisValid] = useState(false);
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -62,11 +63,26 @@ export default function CountryItem({ countryData }: Props) {
   //favorite store
   const getData = useSelector((state: RootState) => state.favItem);
   //favorite item is available function
-  let isFavorite = getData.favCountries.some(
-    (item) => item.name.common === countryData.name.common
-  );
-  //favorite button function
   const favDispatch = useDispatch();
+  let isFavorite = getData.favCountries.some(
+    (item) =>
+      item.name.common.toLocaleLowerCase() ===
+      countryData.name.common.toLocaleLowerCase()
+  );
+  function getValue() {
+    if (isFavorite) {
+      setisValid(false);
+      setOpen(true);
+      return;
+    } else {
+      setisValid(true);
+      setOpen(false);
+      favDispatch(favactions.favaddItem(countryData));
+    }
+  }
+
+  //favorite button function
+  /*  const favDispatch = useDispatch();
   function getValue() {
     if (isFavorite) {
       setOpen(true);
@@ -75,7 +91,7 @@ export default function CountryItem({ countryData }: Props) {
       favDispatch(favactions.favaddItem(countryData));
     }
   }
-
+ */
   return (
     <Fragment>
       <StyledTableRow key={crypto.randomUUID()} className="CountryTable">

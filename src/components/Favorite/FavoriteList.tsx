@@ -7,6 +7,7 @@ import { Fragment } from "react";
 import { useState } from "react";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
+import Button from "@mui/material/Button";
 //component
 import { CountryType } from "../../types/type";
 import { useDispatch } from "react-redux";
@@ -39,7 +40,9 @@ type Props = {
 
 export default function FavoriteList({ favData }: Props) {
   const [open, setOpen] = useState(false);
-
+  const handleClick = () => {
+    setOpen(true);
+  };
   const handleClose = (
     event?: React.SyntheticEvent | Event,
     reason?: string
@@ -50,16 +53,15 @@ export default function FavoriteList({ favData }: Props) {
 
     setOpen(false);
   };
-  const handleClick = () => {
-    setOpen(true);
-  };
 
   ///logic remove
   const dispatchFav = useDispatch();
-  const handleRemove = (name: string) => {
-    dispatchFav(favactions.favRemoveItem(name));
-    setOpen(true);
-  };
+  function handleRemove() {
+    dispatchFav(favactions.favRemoveItem(favData.name.common));
+    handleClick();
+
+    //console.log(handleClick);
+  }
 
   return (
     <Fragment>
@@ -84,17 +86,22 @@ export default function FavoriteList({ favData }: Props) {
           )}
         </StyledTableCell>
 
+        <StyledTableCell align="right">
+          <Button variant="contained" onClick={handleRemove}>
+            Remove
+          </Button>
+        </StyledTableCell>
+
         <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-          <Alert severity="warning" sx={{ width: "100%" }}>
+          <Alert
+            severity="success"
+            sx={{ width: "100%" }}
+            onClose={handleClose}
+          >
+            {favData.name.common}
             removed
           </Alert>
         </Snackbar>
-
-        <StyledTableCell align="right">
-          <button onClick={() => handleRemove(favData.name.common)}>
-            Remove
-          </button>
-        </StyledTableCell>
       </StyledTableRow>
     </Fragment>
   );
