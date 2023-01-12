@@ -2,7 +2,7 @@ import React from "react";
 //component
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import FavoriteList from "../Favorite/FavoriteList";
+import FavoriteList from "./FavoriteList";
 
 //mui
 import Table from "@mui/material/Table";

@@ -2,13 +2,13 @@ import React from "react";
 import "./App.css";
 
 import { Route, Routes } from "react-router";
-import Home from "./pages/Home/Home";
-import Favorite from "./pages/Favorite/Favorite";
-import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/home/Home";
+import Favorite from "./pages/favorite/Favorite";
+import Navbar from "./components/navbar/Navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
-import CountryDetails from "./pages/CountryDetails/CountryDetails";
-import Footer from "./components/Footer/Footer";
+import CountryDetails from "./pages/countryDetails/CountryDetails";
+import Footer from "./components/footer/Footer";
 function App() {
   const fevData = useSelector((state: RootState) => state.favItem.favCountries);
   return (

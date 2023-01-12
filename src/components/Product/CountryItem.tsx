@@ -17,7 +17,7 @@ import Snackbar from "@mui/material/Snackbar";
 import favactions from "../../redux/slice/FavoriteCartSlice";
 import { CountryType } from "../../types/type";
 import { RootState } from "../../store/store";
-import "../Product/CountryItem.css";
+import "./CountryItem.css";
 
 //mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -86,14 +86,14 @@ export default function CountryItem({ countryData }: Props) {
             className="flagImage"
           ></img>
         </StyledTableCell>
-        <StyledTableCell align="right">
+        <StyledTableCell align="center">
           {countryData.name.common}
         </StyledTableCell>
-        <StyledTableCell align="right">{countryData.region}</StyledTableCell>
-        <StyledTableCell align="right">
+        <StyledTableCell align="center">{countryData.region}</StyledTableCell>
+        <StyledTableCell align="center">
           {countryData.population}
         </StyledTableCell>
-        <StyledTableCell align="right">
+        <StyledTableCell align="center">
           {countryData.languages ? (
             Object.entries(countryData.languages).map(([key]) => (
               <li key={crypto.randomUUID()}>{countryData.languages[key]}</li>

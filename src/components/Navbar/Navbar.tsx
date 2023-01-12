@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Badge from "@mui/material/Badge";
 import { CountryType } from "../../types/type";
-import "../Navbar/Navbar.css";
+import "./Navbar.css";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -57,13 +57,12 @@ export default function Navbar({ fevItem }: props) {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Link style={style} to="/favorite">
               <Badge badgeContent={favItemlength} color="secondary">
-                <IconButton
-                  sx={{
-                    color: favItemlength ? pink[500] : "bluegray",
-                  }}
-                >
-                  <FavoriteIcon className="favIcon" />
-                </IconButton>
+                <IconButton />
+
+                <FavoriteIcon
+                  className="favIcon"
+                  sx={{ color: favItemlength > 0 ? "pink[500]" : "white" }}
+                />
               </Badge>
             </Link>
           </Box>

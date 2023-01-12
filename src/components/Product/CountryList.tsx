@@ -11,7 +11,7 @@ import CountryItem from "./CountryItem";
 import { AppDispatch, RootState } from "../../store/store";
 import { CountryType } from "../../types/type";
 import SearchForm from "../Search/SearchForm";
-import Loader from "../Loader/Loader";
+import Loader from "../loader/Loader";
 import "./CountryList.css";
 import { countryAction } from "../../redux/slice/CountrySlice";
 
@@ -50,6 +50,7 @@ export default function CountryList() {
     (state: RootState) => state.userItem.userInput
   );
   //country list fetching function
+  const dispatchNorm = useDispatch;
   const disPatch = useDispatch<AppDispatch>();
   useEffect(() => {
     disPatch(fetchcountryData());
@@ -68,38 +69,20 @@ export default function CountryList() {
     setfilteredProducts(fiteredProduct);
   }, [getuserData, getData]);
   //display conditions
-  //result = getData;
+
   if (getuserData === "") {
     result = getData;
     //console.log(result, "1");
   } else {
     result = fiteredProducts;
   }
-  const countryListresult = [...result];
-  function countryDscending() {
-    const sorted = countryListresult.sort((a, b) => {
-      if (a.name.common < b.name.common) {
-        return -1;
-      }
-      if (a.name.common > b.name.common) {
-        return 1;
-      }
-      return 0;
-    });
-    disPatch(countryAction.getProdutData(sorted));
-  }
 
-  function countryAscending() {
-    const sorted = countryListresult.sort((a, b) => {
-      if (a.name.common > b.name.common) {
-        return -1;
-      }
-      if (a.name.common < b.name.common) {
-        return 1;
-      }
-      return 0;
-    });
-    disPatch(countryAction.getProdutData(sorted));
+  //sorting mathod
+  function countryDscendOrder() {
+    disPatch(countryAction.countryDscending());
+  }
+  function countryAscenOrder() {
+    disPatch(countryAction.countryAscending());
   }
 
   return (
@@ -108,32 +91,35 @@ export default function CountryList() {
       <div>
         <SearchForm></SearchForm>
       </div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="table">
         <Table
-          sx={{ minWidth: 800 }}
-          aria-label="customized table"
-          className="CountryTable"
+          sx={{ minWidth: 100 }}
+          size="small"
+          aria-label="a dense table"
+          className="table"
         >
-          <TableHead>
+          <TableHead className=".table thead">
             <TableRow>
-              <StyledTableCell className="flag">Flag</StyledTableCell>
-              <StyledTableCell align="right">
+              <StyledTableCell className="flag" align="center">
+                Flag
+              </StyledTableCell>
+              <StyledTableCell align="center">
                 Name{" "}
-                <IconButton onClick={countryDscending}>
+                <IconButton onClick={countryDscendOrder}>
                   <ArrowDownwardIcon fontSize="small" />
                 </IconButton>
-                <IconButton onClick={countryAscending}>
+                <IconButton onClick={countryAscenOrder}>
                   <ArrowUpwardIcon fontSize="small" />
                 </IconButton>
               </StyledTableCell>
               {/* <StyledTableCell align="right">Name</StyledTableCell> */}
-              <StyledTableCell align="right">Region</StyledTableCell>
-              <StyledTableCell align="right">Population</StyledTableCell>
+              <StyledTableCell align="center">Region</StyledTableCell>
+              <StyledTableCell align="center">Population</StyledTableCell>
 
-              <StyledTableCell align="right">Languages</StyledTableCell>
+              <StyledTableCell align="center">Languages</StyledTableCell>
 
-              <StyledTableCell align="right"></StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
             </TableRow>
           </TableHead>
 

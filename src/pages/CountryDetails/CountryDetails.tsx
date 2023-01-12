@@ -23,8 +23,8 @@ import { RootState } from "../../store/store";
 import { fetchcountryDetails } from "../../thunk/Countrydetails";
 import "./CountryDetails.css";
 import { countryDetailsAction } from "../../redux/slice/CountryDetailsSlice";
-import "../../components/Loader/Loader";
-import Loder from "../../components/Loader/Loader";
+import "../../components/loader/Loader";
+import Loder from "../../components/loader/Loader";
 
 export default function CountryDetails() {
   const name = useParams(); //it gives us object

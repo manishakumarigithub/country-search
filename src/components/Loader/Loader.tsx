@@ -4,7 +4,7 @@ import React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 //component
-import "../Loader/Loader.css";
+import "./Loader.css";
 
 export default function Loder() {
   return (

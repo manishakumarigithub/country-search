@@ -4,3 +4,17 @@
 .table-body {
   background-color: aquamarine;
 } */
+
+.table {
+  color: rgb(214, 74, 74);
+}
+.table thead {
+  background-color: lightcoral;
+}
+.table tbody {
+  background-color: beige;
+  color: crimson;
+}
+.table colgroup {
+  column-span: style= "width: 20%";
+}

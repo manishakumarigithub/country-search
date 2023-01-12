@@ -4,6 +4,9 @@ import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { Fragment } from "react";
+import { useState } from "react";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 //component
 import { CountryType } from "../../types/type";
 import { useDispatch } from "react-redux";
@@ -35,11 +38,28 @@ type Props = {
 };
 
 export default function FavoriteList({ favData }: Props) {
-  const usedispatch = useDispatch();
-  const handleRemove = (name: string) => {
-    usedispatch(favactions.favRemoveItem(name));
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
-  console.log(favData, "fav");
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  ///logic remove
+  const dispatchFav = useDispatch();
+  const handleRemove = (name: string) => {
+    dispatchFav(favactions.favRemoveItem(name));
+    setOpen(true);
+  };
 
   return (
     <Fragment>
@@ -63,6 +83,13 @@ export default function FavoriteList({ favData }: Props) {
             <li>No Languages</li>
           )}
         </StyledTableCell>
+
+        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+          <Alert severity="warning" sx={{ width: "100%" }}>
+            removed
+          </Alert>
+        </Snackbar>
+
         <StyledTableCell align="right">
           <button onClick={() => handleRemove(favData.name.common)}>
             Remove
