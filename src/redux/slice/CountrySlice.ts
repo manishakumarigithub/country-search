@@ -2,13 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { CountryType } from "../../types/type";
 
-type initialState = {
+type InitialState = {
   country: CountryType[];
   isLoading: boolean;
+  Change: boolean;
 };
-const initialState: initialState = {
+const initialState: InitialState = {
   isLoading: false,
   country: [],
+  Change: false,
 };
 
 const countrySlice = createSlice({
@@ -44,6 +46,9 @@ const countrySlice = createSlice({
         }
         return 0;
       });
+    },
+    setChange: (state, action) => {
+      state.Change = action.payload;
     },
   },
 });

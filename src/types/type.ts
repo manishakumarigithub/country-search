@@ -10,10 +10,7 @@ export type CountryType = {
     googleMaps: string;
     openStreetMaps: string;
   };
-  car: {
-    signs: string;
-    side: string;
-  };
+
   continents: string;
   timezones: string;
 };

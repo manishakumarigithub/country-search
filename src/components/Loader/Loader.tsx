@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 //component
 import "./Loader.css";
 
-export default function Loder() {
+export default function Loader() {
   return (
     <div className="loader">
       {" "}

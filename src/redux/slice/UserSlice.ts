@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type initialState = {
+type InitialState = {
   userInput: string;
 };
-const initialState: initialState = {
+const initialState: InitialState = {
   userInput: "",
 };
 
@@ -20,4 +20,3 @@ export const userAction = userSlice.actions;
 
 const userReducer = userSlice.reducer;
 export default userReducer;
-// test

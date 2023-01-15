@@ -10,8 +10,9 @@ import Snackbar from "@mui/material/Snackbar";
 import Button from "@mui/material/Button";
 //component
 import { CountryType } from "../../types/type";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import favactions from "../../redux/slice/FavoriteCartSlice";
+import { RootState } from "../../store/store";
 
 //mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -39,9 +40,17 @@ type Props = {
 };
 
 export default function FavoriteList({ favData }: Props) {
-  const [open, setOpen] = useState(false);
+  const dispatchFav = useDispatch();
+  const [favRemove, setFavremove] = useState<boolean>(false);
+
+  const favRemoveHandleclick = () => {
+    setFavremove(true);
+  };
+  //logic for snackbar
+  const open = useSelector((state: RootState) => state.favItem.open);
+
   const handleClick = () => {
-    setOpen(true);
+    dispatchFav(favactions.setOpen(true));
   };
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -51,16 +60,16 @@ export default function FavoriteList({ favData }: Props) {
       return;
     }
 
-    setOpen(false);
+    //setOpen(false);
+    dispatchFav(favactions.setOpen(false));
   };
 
   ///logic remove
-  const dispatchFav = useDispatch();
+
   function handleRemove() {
     dispatchFav(favactions.favRemoveItem(favData.name.common));
+    favRemoveHandleclick();
     handleClick();
-
-    //console.log(handleClick);
   }
 
   return (
@@ -92,14 +101,13 @@ export default function FavoriteList({ favData }: Props) {
           </Button>
         </StyledTableCell>
 
-        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
           <Alert
             severity="success"
             sx={{ width: "100%" }}
             onClose={handleClose}
           >
-            {favData.name.common}
-            removed
+            item removed
           </Alert>
         </Snackbar>
       </StyledTableRow>

@@ -27,7 +27,7 @@ import "../../components/loader/Loader";
 import Loder from "../../components/loader/Loader";
 
 export default function CountryDetails() {
-  const name = useParams(); //it gives us object
+  const name = useParams();
 
   const Apiurl = "https://restcountries.com/v3.1/name/" + name.name;
   //store of Details

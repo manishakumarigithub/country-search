@@ -6,11 +6,10 @@
   background-color: #1976d2;
   height: 50px;
   text-align: center;
-}
-.next {
-  margin-right: 5px;
-  background-color: white;
-}
-.back {
-  background-color: white;
+
+  width: 100%;
+  display: flex;
+  position: static;
+
+  justify-content: center;
 }

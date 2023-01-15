@@ -1,3 +1,10 @@
 .Search_Form {
-  padding: 30px;
+  padding: 20px;
+
+  color: inherit;
+}
+.inputbox {
+  background-color: aliceblue;
+  margin-right: 500px;
+  color: inherit;
 }

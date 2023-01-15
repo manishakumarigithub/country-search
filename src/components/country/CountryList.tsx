@@ -50,7 +50,7 @@ export default function CountryList() {
     (state: RootState) => state.userItem.userInput
   );
   //country list fetching function
-  const dispatchNorm = useDispatch;
+
   const disPatch = useDispatch<AppDispatch>();
   useEffect(() => {
     disPatch(fetchcountryData());
@@ -78,6 +78,7 @@ export default function CountryList() {
   }
 
   //sorting mathod
+
   function countryDscendOrder() {
     disPatch(countryAction.countryDscending());
   }

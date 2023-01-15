@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CountryType } from "../../types/type";
 
-type initialState = {
+type InitialState = {
   countryItem: CountryType[];
   isLoading: boolean;
 };
-const initialState: initialState = {
+const initialState: InitialState = {
   countryItem: [],
   isLoading: false,
 };

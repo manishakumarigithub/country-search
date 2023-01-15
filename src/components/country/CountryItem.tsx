@@ -18,6 +18,7 @@ import favactions from "../../redux/slice/FavoriteCartSlice";
 import { CountryType } from "../../types/type";
 import { RootState } from "../../store/store";
 import "./CountryItem.css";
+import { countryAction } from "../../redux/slice/CountrySlice";
 
 //mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -46,8 +47,11 @@ type Props = {
 
 export default function CountryItem({ countryData }: Props) {
   //snackbar function
+  const [favAdd, setFavadd] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
-  const [isValid, setisValid] = useState(false);
+  const favaddHandleClick = () => {
+    setFavadd(true);
+  };
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -63,35 +67,25 @@ export default function CountryItem({ countryData }: Props) {
   //favorite store
   const getData = useSelector((state: RootState) => state.favItem);
   //favorite item is available function
-  const favDispatch = useDispatch();
+
   let isFavorite = getData.favCountries.some(
     (item) =>
       item.name.common.toLocaleLowerCase() ===
       countryData.name.common.toLocaleLowerCase()
   );
+
+  //favorite button function
+  const favDispatch = useDispatch();
   function getValue() {
     if (isFavorite) {
-      setisValid(false);
       setOpen(true);
       return;
     } else {
-      setisValid(true);
-      setOpen(false);
       favDispatch(favactions.favaddItem(countryData));
+      favaddHandleClick();
     }
   }
 
-  //favorite button function
-  /*  const favDispatch = useDispatch();
-  function getValue() {
-    if (isFavorite) {
-      setOpen(true);
-      return;
-    } else {
-      favDispatch(favactions.favaddItem(countryData));
-    }
-  }
- */
   return (
     <Fragment>
       <StyledTableRow key={crypto.randomUUID()} className="CountryTable">

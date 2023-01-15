@@ -1,10 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { CountryType } from "../../types/type";
-type initialState = {
+type InitialState = {
   favCountries: CountryType[];
+  open: boolean;
 };
-const initialState: initialState = { favCountries: [] };
+const initialState: InitialState = {
+  favCountries: [],
+
+  open: false,
+};
 const favSlice = createSlice({
   name: "favItem",
   initialState,
@@ -17,6 +22,9 @@ const favSlice = createSlice({
         (item) => item.name.common !== action.payload
       );
       state.favCountries = result;
+    },
+    setOpen: (state, action) => {
+      state.open = action.payload;
     },
   },
 });

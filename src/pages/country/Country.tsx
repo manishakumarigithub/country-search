@@ -1,5 +1,6 @@
 import React from "react";
-import CountryList from "../../components/product/CountryList";
+import "./Country.css";
+import CountryList from "../../components/country/CountryList";
 
 export default function Home() {
   return (
