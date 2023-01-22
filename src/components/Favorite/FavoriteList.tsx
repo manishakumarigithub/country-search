@@ -41,40 +41,18 @@ type Props = {
 
 export default function FavoriteList({ favData }: Props) {
   const dispatchFav = useDispatch();
-  const [favRemove, setFavremove] = useState<boolean>(false);
 
-  const favRemoveHandleclick = () => {
-    setFavremove(true);
-  };
   //logic for snackbar
-  const open = useSelector((state: RootState) => state.favItem.open);
-
-  const handleClick = () => {
-    dispatchFav(favactions.setOpen(true));
-  };
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    //setOpen(false);
-    dispatchFav(favactions.setOpen(false));
-  };
 
   ///logic remove
 
   function handleRemove() {
-    dispatchFav(favactions.favRemoveItem(favData.name.common));
-    favRemoveHandleclick();
-    handleClick();
+    dispatchFav(favactions.favRemoveItem(favData));
   }
-
+  //console.log(favData, "from");
   return (
     <Fragment>
-      <StyledTableRow key={crypto.randomUUID()} className="CountryTable">
+      <StyledTableRow className="CountryTable">
         <StyledTableCell component="th" scope="row">
           <img
             src={favData.flags.png}
@@ -100,16 +78,6 @@ export default function FavoriteList({ favData }: Props) {
             Remove
           </Button>
         </StyledTableCell>
-
-        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-          <Alert
-            severity="success"
-            sx={{ width: "100%" }}
-            onClose={handleClose}
-          >
-            item removed
-          </Alert>
-        </Snackbar>
       </StyledTableRow>
     </Fragment>
   );

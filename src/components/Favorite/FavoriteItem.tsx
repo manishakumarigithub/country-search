@@ -13,6 +13,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
+import { CountryType } from "../../types/type";
+import { isTemplateSpan } from "typescript";
 
 //mui function
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -30,6 +32,10 @@ export default function FavoriteItem() {
   const favItems = useSelector(
     (state: RootState) => state.favItem.favCountries
   );
+  const favListItem =
+    localStorage.getItem("country") !== null
+      ? JSON.parse(localStorage.getItem("country")!)
+      : [];
 
   return (
     <div>
@@ -55,9 +61,19 @@ export default function FavoriteItem() {
           </TableHead>
 
           <TableBody>
-            {favItems.map((items) => (
+            {favListItem.length > 0
+              ? favListItem.map((item: CountryType) => (
+                  <FavoriteList favData={item} key={crypto.randomUUID()} />
+                ))
+              : favItems.map((item: CountryType) => (
+                  <FavoriteList
+                    favData={item}
+                    key={crypto.randomUUID()}
+                  ></FavoriteList>
+                ))}
+            {/* {favListItem.map((items: CountryType) => (
               <FavoriteList key={crypto.randomUUID()} favData={items} />
-            ))}
+            ))}{" "} */}
           </TableBody>
         </Table>
       </TableContainer>

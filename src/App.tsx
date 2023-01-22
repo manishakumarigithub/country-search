@@ -16,8 +16,9 @@ import { createAbstractBuilder } from "typescript";
 
 function App() {
   const [isTheme, setIsTheme] = useState<boolean>(false);
+  const [userInputs, setuserInputs] = useState<string>("");
   const theme = createTheme({
-    palette: { mode: isTheme ? "light" : "dark" },
+    palette: { mode: isTheme ? "dark" : "light" },
   });
 
   const changethemeToggle = () => {

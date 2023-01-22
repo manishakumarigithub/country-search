@@ -10,7 +10,7 @@ import { fetchcountryData } from "../../thunk/Country";
 import CountryItem from "./CountryItem";
 import { AppDispatch, RootState } from "../../store/store";
 import { CountryType } from "../../types/type";
-import SearchForm from "../Search/SearchForm";
+
 import Loader from "../loader/Loader";
 import "./CountryList.css";
 import { countryAction } from "../../redux/slice/CountrySlice";
@@ -89,9 +89,7 @@ export default function CountryList() {
   return (
     <div>
       {isLoad ? <Loader></Loader> : ""}
-      <div>
-        <SearchForm></SearchForm>
-      </div>
+
       <TableContainer component={Paper} className="table">
         <Table
           sx={{ minWidth: 100 }}

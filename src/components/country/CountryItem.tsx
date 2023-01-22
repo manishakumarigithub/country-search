@@ -63,6 +63,9 @@ export default function CountryItem({ countryData }: Props) {
 
     setOpen(false);
   };
+  const favRemove = () => {
+    favDispatch(favactions.favRemoveItem(countryData));
+  };
 
   //favorite store
   const getData = useSelector((state: RootState) => state.favItem);
@@ -76,15 +79,16 @@ export default function CountryItem({ countryData }: Props) {
 
   //favorite button function
   const favDispatch = useDispatch();
-  function getValue() {
+  const getValue = () => {
     if (isFavorite) {
-      setOpen(true);
-      return;
+      favRemove();
+      isFavorite = !isFavorite;
     } else {
       favDispatch(favactions.favaddItem(countryData));
       favaddHandleClick();
+      isFavorite = !isFavorite;
     }
-  }
+  };
 
   return (
     <Fragment>
@@ -115,7 +119,6 @@ export default function CountryItem({ countryData }: Props) {
 
         <StyledTableCell>
           <IconButton
-            aria-label="add to favorites"
             onClick={getValue}
             sx={{ color: isFavorite ? pink[500] : "bluegray" }}
           >

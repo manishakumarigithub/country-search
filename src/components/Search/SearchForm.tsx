@@ -2,6 +2,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
 
 //mui
 import TextField from "@mui/material/TextField";
@@ -12,6 +14,7 @@ import "./SearchForm.css";
 export default function SearchForm() {
   //state for userinput
   const [userInputs, setuserInputs] = useState<string>("");
+
   //function for onchange
 
   const getDispatch = useDispatch();
@@ -24,15 +27,17 @@ export default function SearchForm() {
 
   return (
     <div className="Search_Form">
-      <TextField
-        id="standard-search"
-        label="please enter country name"
-        variant="standard"
-        onChange={getValue}
-        value={userInputs}
-        className="inputbox"
-        inputProps={{ "aria-label": "search country by name" }}
-      />
+      <Paper
+        component="form"
+        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
+      >
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="Search country..."
+          inputProps={{ "aria-label": "Search Products..." }}
+          onChange={getValue}
+        />
+      </Paper>
     </div>
   );
 }

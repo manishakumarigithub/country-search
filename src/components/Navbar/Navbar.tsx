@@ -5,12 +5,14 @@ import Badge from "@mui/material/Badge";
 import { CountryType } from "../../types/type";
 import "./Navbar.css";
 import Switch, { SwitchProps } from "@mui/material/Switch";
+import "../Search/SearchForm";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import SearchForm from "../Search/SearchForm";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import { grey, red } from "@mui/material/colors";
@@ -90,6 +92,7 @@ export default function Navbar({ fevItem, changeTheme }: props) {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography
             variant="h5"
             noWrap
@@ -98,24 +101,34 @@ export default function Navbar({ fevItem, changeTheme }: props) {
           >
             Country
           </Typography>
+
+          <Box>
+            <SearchForm></SearchForm>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: "30px",
+            }}
+          />
           <Box sx={{ flexGrow: 40 }} />
-          <Box sx={{ display: { xs: "none", md: "flex", mt: -2 } }}>
+          <Box sx={{ display: { xs: "none", md: "flex", mt: 2 } }}>
             <Link style={style} to="">
               {" "}
               <HouseIcon className="homeIcon" />
-            </Link>
+            </Link>{" "}
           </Box>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex", mt: -2 } }}>
+          <Box sx={{ display: { xs: "none", md: "flex", mt: 2 } }}>
             <Link style={style} to="/country">
               {" "}
               <PublicIcon className="homeIcon" />
             </Link>
-          </Box>
 
-          <Box sx={{ flexGrow: -11 }} />
-          <Box sx={{ display: { xs: "none", md: "flex", mt: 4 } }}>
+            {/* <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "flex", mt: 4 } }}> */}
             <Link style={style} to="/favorite">
               <Badge badgeContent={favItemlength} color="secondary">
                 <IconButton />
@@ -127,7 +140,7 @@ export default function Navbar({ fevItem, changeTheme }: props) {
               </Badge>
             </Link>
           </Box>
-
+          <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex", mt: 4 } }}>
             <FormControlLabel
               control={<MaterialUISwitch sx={{ m: 1 }} />}
